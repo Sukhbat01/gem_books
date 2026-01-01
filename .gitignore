@@ -1,0 +1,20 @@
+# --- SECRETS (Critical) ---
+.env
+ca.pem
+
+# --- PYTHON CLUTTER ---
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+env/
+.env/
+
+# --- STREAMLIT & DASHBOARD ---
+.streamlit/secrets.toml
+.streamlit/config.toml
+
+# --- OS TEMPORARY FILES ---
+.DS_Store
+Thumbs.db
