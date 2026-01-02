@@ -30,6 +30,17 @@ def load_data():
 
 df = load_data()
 
+st.sidebar.divider()
+st.sidebar.subheader("System Status")
+
+if not df.empty:
+    latest_update = df['scraped_at'].max()
+    readable_time = latest_update.strftime("%b %d, %Y %I:%M %p")
+    st.sidebar.success(f"Last Sync: {readable_time}")
+    st.sidebar.caption("Data refreshes daily at 3:00 AM UTC")
+else:
+    st.sidebar.warning("Syncing data...")
+
 st.sidebar.header("Top Price Drops")
 def find_gems(data):
     gem_list = []
