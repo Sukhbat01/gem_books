@@ -9,7 +9,7 @@ cert_content = os.environ.get("CA_CERT_CONTENT")
 if cert_content:
     with open("ca.pem", "w") as f:
         f.write(cert_content)
-        
+
 st.set_page_config(page_title="Book Gem Finder", layout="wide")
 st.title("Book Market Intelligence Dashboard")
 st.markdown("Finding high-rated books with falling price trends.")
@@ -57,7 +57,7 @@ if target_book:
     col1.metric("Current Price", f"£{book_data['price'].iloc[-1]}")
     col1.write(f"Rating: {book_data['rating'].iloc[-1]}")
     
-    fig = px.line(book_data, x='scraped_at', y='price', title=f"Price Trend: {target_book}")
+    fig = px.line(book_data, x='scraped_at', y='price', title=f"Price Trend: {target_book}", markers=True)
     st.plotly_chart(fig, use_container_width=True)
 
 with st.expander("View Full Database"):
