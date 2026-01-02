@@ -18,7 +18,7 @@ db = mysql.connector.connect(
     port=int(os.getenv("DB_PORT")),
     ssl_ca="ca.pem"
 )
-cursor = db.cursor()
+cursor = db.cursor(buffered=True)
 cursor.execute("DROP TABLE IF EXISTS price_history")
 cursor.execute("""
 CREATE TABLE IF NOT EXISTS books (
