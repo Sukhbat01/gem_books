@@ -100,5 +100,7 @@ if target_book:
     st.plotly_chart(fig, use_container_width=True)
 
 with st.expander("View Full Database"):
-    st.dataframe(df, use_container_width=True)
-    
+    display_df = df.copy()
+    display_df.columns = ["Book Title", "Star Rating", "Price (£)", "Date Scraped"]
+    display_df.index = display_df.index + 1
+    st.dataframe(display_df, use_container_width=True)
