@@ -34,6 +34,7 @@ CREATE TABLE IF NOT EXISTS books (
 cursor.execute("""
 CREATE TABLE IF NOT EXISTS price_history (
     id INT AUTO_INCREMENT PRIMARY KEY,
+    book_id INT,
     book_title VARCHAR(255),
     price DECIMAL(10, 2),
     scraped_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
