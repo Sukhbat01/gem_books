@@ -97,6 +97,21 @@ if target_book:
     col1.write(f"Rating: {book_data['rating'].iloc[-1]}")
     
     fig = px.line(book_data, x='scraped_at', y='price', title=f"Price Trend: {target_book}", markers=True)
+    fig = px.line(
+        book_data, 
+        x='scraped_at', 
+        y='price', 
+        title=f"Price Trend: {target_book}", 
+        markers=True,
+        hover_data={
+            'scraped_at': '|%b %d, %I:%M %p', 
+            'price': ':£.2f'                 
+        }
+    )
+    fig.update_xaxes(
+        tickformat="%b %d\n%I:%M %p", 
+        title_text="Timeline"
+    )
     st.plotly_chart(fig, use_container_width=True)
 
 with st.expander("View Full Database"):
