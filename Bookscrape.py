@@ -8,6 +8,11 @@ from sklearn.linear_model import LinearRegression
 import os
 from dotenv import load_dotenv
 
+cert_content = os.environ.get("CA_CERT_CONTENT")
+if cert_content:
+    with open("ca.pem", "w") as f:
+        f.write(cert_content)
+
 load_dotenv()
 
 db = mysql.connector.connect(
@@ -108,7 +113,8 @@ db_analysis = mysql.connector.connect(
     password=os.getenv("DB_PASS"),
     database=os.getenv("DB_NAME"),
     port=int(os.getenv("DB_PORT")),
-    ssl_ca="ca.pem"
+    ssl_ca="ca.pem",
+    buffered=True
 )
 
 query = """

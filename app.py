@@ -5,13 +5,18 @@ import plotly.express as px
 import os
 from dotenv import load_dotenv
 
+cert_content = os.environ.get("CA_CERT_CONTENT")
+if cert_content:
+    with open("ca.pem", "w") as f:
+        f.write(cert_content)
+        
 st.set_page_config(page_title="Book Gem Finder", layout="wide")
 st.title("Book Market Intelligence Dashboard")
 st.markdown("Finding high-rated books with falling price trends.")
 
 load_dotenv()
 
-database_url = os.getenv("DATABASE_URL")
+database_url = os.environ.get("DATABASE_URL")
 engine = create_engine(database_url, connect_args={"ssl_ca": "ca.pem"})
 
 @st.cache_data(ttl=600) 
