@@ -41,6 +41,34 @@ if not df.empty:
 else:
     st.sidebar.warning("Syncing data...")
 
+import io
+
+st.sidebar.divider()
+st.sidebar.subheader("Export Data")
+
+@st.cache_data
+def convert_df_to_csv(df):
+    return df.to_csv(index=False).encode('utf-8')
+
+csv_data = convert_df_to_csv(df)
+st.sidebar.download_button(
+    label="Download as CSV",
+    data=csv_data,
+    file_name='book_market_data.csv',
+    mime='text/csv',
+)
+
+buffer = io.BytesIO()
+with pd.ExcelWriter(buffer, engine='xlsxwriter') as writer:
+    df.to_excel(writer, index=False, sheet_name='Market Data')
+
+st.sidebar.download_button(
+    label="Download as Excel",
+    data=buffer.getvalue(),
+    file_name='book_market_data.xlsx',
+    mime='application/vnd.ms-excel'
+)
+
 st.sidebar.header("Top Price Drops")
 def find_gems(data):
     gem_list = []
