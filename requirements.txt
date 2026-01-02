@@ -3,6 +3,8 @@ beautifulsoup4
 pandas
 sqlalchemy
 mysql-connector-python
+pymysql
 python-dotenv
 streamlit
 scikit-learn
+plotly
