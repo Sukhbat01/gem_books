@@ -19,6 +19,17 @@ db = mysql.connector.connect(
     ssl_ca="ca.pem"
 )
 cursor = db.cursor()
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS books (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255),
+    rating VARCHAR(50),
+    price DECIMAL(10, 2),
+    availability VARCHAR(50),
+    image_url TEXT,
+    scraped_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+)
+""")
 
 current_url = "https://books.toscrape.com/catalogue/page-1.html"
     
