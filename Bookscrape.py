@@ -19,7 +19,7 @@ db = mysql.connector.connect(
     ssl_ca="ca.pem"
 )
 cursor = db.cursor(buffered=True)
-cursor.execute("DROP TABLE IF EXISTS price_history")
+# cursor.execute("DROP TABLE IF EXISTS price_history")
 cursor.execute("""
 CREATE TABLE IF NOT EXISTS books (
     id INT AUTO_INCREMENT PRIMARY KEY,
