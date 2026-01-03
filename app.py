@@ -17,7 +17,7 @@ st.markdown("Finding high-rated books with falling price trends.")
 load_dotenv()
 
 database_url = os.environ.get("DATABASE_URL")
-engine = create_engine(database_url, connect_args={"ssl_ca": "ca.pem"})
+engine = create_engine(database_url, connect_args={"ssl_ca": "ca.pem"}, pool_recycle=3600, pool_pre_ping=True)
 
 @st.cache_data(ttl=600) 
 def load_data():
